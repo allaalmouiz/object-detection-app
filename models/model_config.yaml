@@ -1,0 +1,42 @@
+# ─────────────────────────────────────────────────────────────────
+# Model Configuration File
+# YOLOv8n — Football & Basketball Object Detection
+# Trained by: Alaa Almouiz F. Moh. | ID: S2026_176 | ZAKA AI
+# ─────────────────────────────────────────────────────────────────
+
+# Dataset source
+roboflow_project: football-basketball-objecetDetec
+roboflow_version: 2
+
+# Number of classes
+nc: 2
+
+# Class names — order must match training (index 0 first)
+names:
+  0: basketball
+  1: football
+
+# Model architecture
+model: yolov8n
+imgsz: 640
+
+# Training results (for reference)
+epochs_trained: 50
+mAP50: 0.995
+mAP50-95: 0.766
+precision: 0.910
+recall: 1.000
+
+# Per-class results
+class_results:
+  basketball:
+    mAP50: 0.995
+    mAP50-95: 0.704
+  football:
+    mAP50: 0.995
+    mAP50-95: 0.827
+
+# Runtime
+model_file: models/best.pt
+input_size: 640x640
+framework: ultralytics (YOLOv8)
