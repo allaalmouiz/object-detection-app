@@ -1,0 +1,50 @@
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environment ───────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Model weights ─────────────────────────────────────────────────────────────
+# Large binary files — provide best.pt separately (mount in Docker or add locally)
+model/*.pt
+model/*.pth
+model/*.onnx
+model/*.weights
+
+# ── Uploaded images (runtime artefacts) ──────────────────────────────────────
+static/uploads/*
+# Keep the folder itself tracked
+!static/uploads/.gitkeep
+
+# ── YOLO / Ultralytics run artefacts ─────────────────────────────────────────
+runs/
+
+# ── OS & editor junk ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Environment variables ─────────────────────────────────────────────────────
+.env
+.env.*
+
+# ── pytest / coverage ─────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Upload an image and let our AI-powered YOLOv8 model detect and label objects in it instantly." />
+  <title>Object Detection — AI-Powered Image Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+  <!-- ── Background decoration ──────────────────────────────────────────── -->
+  <div class="bg-orb bg-orb--1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--2" aria-hidden="true"></div>
+
+  <main class="page page--center" role="main">
+
+    <!-- ── Hero header ────────────────────────────────────────────────────── -->
+    <header class="hero" aria-labelledby="page-title">
+      <div class="hero__badge" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        YOLOv8 Powered
+      </div>
+      <h1 id="page-title" class="hero__title">Object Detection</h1>
+      <p class="hero__subtitle">
+        Upload any image and our AI model will instantly identify and locate
+        objects within it — powered by a custom-trained YOLOv8 neural network.
+      </p>
+    </header>
+
+    <!-- ── Flash messages ─────────────────────────────────────────────────── -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-list" role="alert" aria-live="polite">
+          {% for msg in messages %}
+            <div class="flash-item flash-item--error">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              {{ msg }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- ── Upload card ─────────────────────────────────────────────────────── -->
+    <section class="card upload-card" aria-label="Image upload form">
+      <form id="upload-form" action="/detect" method="POST" enctype="multipart/form-data" novalidate>
+
+        <!-- Drop zone -->
+        <div class="drop-zone" id="drop-zone" role="button" tabindex="0" aria-label="Click or drag an image here to upload">
+          <div class="drop-zone__icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </div>
+          <p class="drop-zone__text">Drag &amp; drop your image here</p>
+          <p class="drop-zone__hint">or click to browse files</p>
+          <input
+            type="file"
+            id="image-input"
+            name="image"
+            accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+            class="drop-zone__input"
+            aria-label="Select image file"
+            required
+          />
+        </div>
+
+        <!-- Image preview -->
+        <div class="preview-container" id="preview-container" aria-live="polite" hidden>
+          <img id="preview-img" src="" alt="Selected image preview" class="preview-img" />
+          <p class="preview-name" id="preview-name"></p>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" id="submit-btn" class="btn btn--primary btn--full">
+          <span id="btn-text">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Detect Objects
+          </span>
+          <span id="btn-loading" class="btn__loading" hidden aria-live="assertive">
+            <span class="spinner" aria-hidden="true"></span>
+            Analysing image…
+          </span>
+        </button>
+
+      </form>
+    </section>
+
+    <!-- ── Feature pills ──────────────────────────────────────────────────── -->
+    <ul class="feature-list" aria-label="App features">
+      <li class="feature-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Real-time inference
+      </li>
+      <li class="feature-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Confidence scores
+      </li>
+      <li class="feature-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Annotated output
+      </li>
+      <li class="feature-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        PNG · JPG · JPEG
+      </li>
+    </ul>
+
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

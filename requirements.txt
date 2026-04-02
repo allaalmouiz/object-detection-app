@@ -1,0 +1,9 @@
+flask
+ultralytics
+# torch and torchvision are installed separately in the Dockerfile
+# using the CPU-only wheel index to keep the image size smaller:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+Pillow
+opencv-python-headless
