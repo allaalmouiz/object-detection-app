@@ -4,6 +4,9 @@ A modern, AI-powered web application for real-time object detection — built wi
 
 Upload any image and the app will identify objects, draw bounding boxes, and return confidence scores — all in a sleek dark-mode UI.
 
+## APP Demo 
+![App Demo](assets/App.gif)
+
 ---
 
 ## ✨ Features
