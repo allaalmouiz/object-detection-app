@@ -1,4 +1,4 @@
-# 🔍 Object Detection Web App
+# Object Detection Web App
 
 A modern, AI-powered web application for real-time object detection — built with **Flask** and **YOLOv8**, deployable via **Docker**.
 
@@ -7,19 +7,17 @@ Upload any image and the app will identify objects, draw bounding boxes, and ret
 ## APP Demo 
 ![App Demo](assets/APP.gif)
 
----
 
-## ✨ Features
+##  Features
 
-- 🎯 **YOLOv8 inference** using custom-trained weights (`best.pt`)
-- 🖼️ **Drag & drop** image upload with live preview
-- 📊 **Detection results table** with confidence percentages and bars
-- 🐳 **Docker-ready** with CPU-only PyTorch (lightweight image)
-- 📱 **Responsive design** — works on desktop and mobile
+-  **YOLOv8 inference** using custom-trained weights (`best.pt`)
+-  **Drag & drop** image upload with live preview
+-  **Detection results table** with confidence percentages and bars
+-  **Docker-ready** with CPU-only PyTorch (lightweight image)
+-  **Responsive design** — works on desktop and mobile
 
----
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 object-detection-app/
@@ -38,9 +36,8 @@ object-detection-app/
     └── result.html     # Detection results page
 ```
 
----
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -84,7 +81,7 @@ Open **http://localhost:5000** in your browser.
 
 ---
 
-## 🧪 How It Works
+## How It Works
 
 1. User uploads an image via the web UI
 2. Flask saves it to `static/uploads/`
@@ -94,7 +91,7 @@ Open **http://localhost:5000** in your browser.
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 | Setting | Default | Description |
 |---|---|---|
@@ -106,7 +103,7 @@ Open **http://localhost:5000** in your browser.
 
 ---
 
-## 📦 Tech Stack
+##  Tech Stack
 
 - **Backend**: Flask (Python)
 - **Model**: Ultralytics YOLOv8
